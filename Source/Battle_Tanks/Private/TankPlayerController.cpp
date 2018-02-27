@@ -19,7 +19,7 @@ void ATankPlayerController::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	AimTowardsCrosshair();
 
-}
+}							  
 
 ATank* ATankPlayerController::GetControlledTank() const
 {
@@ -33,8 +33,7 @@ void ATankPlayerController::AimTowardsCrosshair()
 	FVector HitLocation; // OUT Parameter
 	if (GetSightRayHitLocation(HitLocation)) // Has "Side-Effect", Is Going To Line Trace
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Hit Direction: %s"), *HitLocation.ToString())
-		// TODO Tell Controlled Tank To Aim At This Point
+		GetControlledTank()->AimAt(HitLocation);
 	}
 }
 
@@ -53,8 +52,6 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
 		// Line Trace Along That LookDirection, And See What We Hit (Up To Max Range)
 		GetLookVectorHitLocation(LookDirection, HitLocation);
 	}
-
-
 	return true;
 }
 
