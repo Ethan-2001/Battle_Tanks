@@ -1,5 +1,4 @@
 #pragma once
-
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "TankAimingComponent.h"
@@ -12,6 +11,9 @@ class BATTLE_TANKS_API ATank : public APawn
 
 public:
 	void AimAt(FVector OutHitLocation);
+
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
 
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
