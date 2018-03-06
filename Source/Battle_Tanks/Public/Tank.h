@@ -7,6 +7,7 @@
 // Foward Declarations
 class UTankBarrel;
 class UTankAimingComponent;
+class AProjectile;
 
 UCLASS()
 class BATTLE_TANKS_API ATank : public APawn
@@ -17,10 +18,13 @@ public:
 	void AimAt(FVector OutHitLocation);
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrelReference(UTankBarrel* BarrelToSet);
+		void SetBarrelReference(UTankBarrel* BarrelToSet);
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
 		void SetTurretReference(UTankTurret* TurretToSet);
+
+	UFUNCTION(BluePrintCallable, Category = "Firing")
+		void Fire();
 
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
@@ -37,4 +41,15 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = Firing)
 		float LaunchSpeed = 4000;
+
+	UPROPERTY(EditAnywhere, Category = Setup)
+		TSubclassOf<AProjectile>ProjectileBlueprint;
+
+	// Local Barrel Reference For Spawning Projectile
+	UTankBarrel* Barrel = nullptr;
+
+	float ReloadTimeInSeconds = 3;
+
+	double LastFireTime = 0;
+
 };
