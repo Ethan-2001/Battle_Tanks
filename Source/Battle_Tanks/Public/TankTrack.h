@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/PrimitiveComponent.h"
 #include "TankTrack.generated.h"
 
 /**
@@ -21,6 +22,6 @@ public:
 
 	// Max Force Per Track In Newtons
 	UPROPERTY(EditDefaultsOnly)
-		float TrackMaxDrivingForce = 4000; // Assume 40 Ton Tank, And 1g Acceleration
+		float TrackMaxDrivingForce = 40000000; // Assume 40 Ton Tank, And 1g Acceleration
 	
 };
